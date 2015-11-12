@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+	<head>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothie/1.27.0/smoothie.min.js"></script>
+		<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+		<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+   
+		<title>Line Chart</title>
+		
+	</head>
+	<body>
+		<div style="width:30%">
+			<div id="pm"></div>
+			<div style="margin-top: 100px">
+				<canvas id="canvas" height="450" width="600"></canvas>
+			</div>
+		</div>
+
+	<script>
+		var socket =  io();
+      	var line1 = new TimeSeries();
+      	var smoothie = new SmoothieChart({millisPerPixel:1000});
+
+	socket.on('array', function(msg){
+	  	 line1.append(new Date().getTime(),msg);
+        $('#pm').text(array[0]);
+    }); 
+	smoothie.streamTo(document.getElementById("canvas"),1000);
+	smoothie.addTimeSeries(line1);
+
+	</script>
+	</body>
+</html>
