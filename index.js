@@ -12,12 +12,7 @@ app.get('/', function(req, res){
 io.on('connection', function (socket) {
 	console.log("one user connected.");
 	socket.emit('array',recent);
- //  setInterval(function () {
- //  	 	// initArray.shift();
- //  	 	// initArray.append(a);
- //    	socket.emit('a', result);
- //    	result++;
-	// }, 1000);
+ 
     
 });
 
